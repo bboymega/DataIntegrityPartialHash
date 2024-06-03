@@ -2,7 +2,6 @@ import random
 from partialhash import partialhash
 import socket
 import pickle
-import datetime
 from partialdataIO import partialdataIO
 file = open("/Volumes/RAMDISK/test.mp3", "rb")
 data = file.read()
@@ -15,7 +14,6 @@ partial_data = partialhash.generatepartialdata(data, partial_label)
 instruction_tag = partialhash.generateinstructiontag(n)
 partial_hash = partialhash.generatepartialhash(instruction_tag, partial_data)
 final_hash = partialhash.generatefinalhash(partial_hash)
-
 print("Partial Label:", partial_label)
 print("Instruction Tag:", instruction_tag)
 print("Calculated Final Hash:", final_hash)
