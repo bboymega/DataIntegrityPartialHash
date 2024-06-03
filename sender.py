@@ -2,13 +2,14 @@ import random
 from partialhash import partialhash
 import socket
 import pickle
+import datetime
 from partialdataIO import partialdataIO
 file = open("/Volumes/RAMDISK/test.mp3", "rb")
 data = file.read()
 file.close()
-n = random.randint(5 + int(len(data) / 10485760), 10 + int(len(data) / 1048576))
-max_partial_size = int(len(data) / n * 2)
 data_size = len(data)
+n = random.randint(5 + int(data_size / 10485760), 10 + int(data_size / 1048576))
+max_partial_size = int(data_size / n * 2)
 partial_label = partialhash.generatepartiallabel(n, max_partial_size, data_size)
 partial_data = partialhash.generatepartialdata(data, partial_label)
 instruction_tag = partialhash.generateinstructiontag(n)
