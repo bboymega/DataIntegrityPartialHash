@@ -45,4 +45,10 @@ class partialhash:
                         partial_hash.append(md5_hash.hexdigest())
         return partial_hash
 
-
+    def generatefinalhash(partial_hash):
+        finalhashstr = ''
+        for i in partial_hash:
+            finalhashstr = finalhashstr + i
+        md5_hash = MD5.new(str.encode(finalhashstr))
+        finalhash = md5_hash.hexdigest()
+        return finalhash
