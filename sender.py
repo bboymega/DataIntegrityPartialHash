@@ -3,10 +3,10 @@ from partialhash import partialhash
 import socket
 import pickle
 from partialdataIO import partialdataIO
-n = random.randint(2,10)
 file = open("/Volumes/RAMDISK/test.mp3", "rb")
 data = file.read()
 file.close()
+n = random.randint(5 + int(len(data) / 10485760), 10 + int(len(data) / 1048576))
 max_partial_size = int(len(data) / n * 2)
 data_size = len(data)
 partial_label = partialhash.generatepartiallabel(n, max_partial_size, data_size)
@@ -39,7 +39,7 @@ try:
     data_size = int.from_bytes(size_bytes, byteorder='big')
     tmp_data = b""
     while len(tmp_data) < data_size:
-        chunk = client_socket.recv(4096)
+        chunk = client_socket.recv(10485760)
         if not chunk:
             break
         tmp_data += chunk

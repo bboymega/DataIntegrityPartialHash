@@ -20,7 +20,7 @@ while True:
         tmp_data = b""
         print("\rReceiving data from client",client_address[0]+":"+str(client_address[1]),"(0%)",end='',flush=True)
         while len(tmp_data) < data_size:
-            chunk = connection.recv(4096)
+            chunk = connection.recv(10485760)
             if not chunk:
                 break
             tmp_data += chunk
