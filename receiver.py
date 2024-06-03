@@ -32,14 +32,17 @@ while True:
         partial_label = pickle.loads(received_data[2])
         instruction_tag = pickle.loads(received_data[3])
         final_hash = received_data[4].decode("utf-8")
+        n = len(partial_label)
 
         print("Partial Label:", partial_label)
         print("Instruction Tag:", instruction_tag)
         print("Received Final Hash From Peer:", final_hash)
 
-        partial_data = partialhash.generatepartialdata(data, partial_label)
-        partial_hash = partialhash.generatepartialhash(instruction_tag, partial_data)
-        final_hash_server = partialhash.generatefinalhash(partial_hash)
+        #partial_data = partialhash.generatepartialdata(data, partial_label)
+        #partial_hash = partialhash.generatepartialhash(instruction_tag, partial_data)
+        #final_hash_server = partialhash.generatefinalhash(partial_hash)
+
+        final_hash_server = partialhash.generatefinalhashquickserver(data, partial_label, instruction_tag)
         print("Calculated Final Hash:" ,final_hash_server)
         integrity_stat = 0
         if (final_hash_server == final_hash):
