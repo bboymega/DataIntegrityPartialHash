@@ -39,8 +39,8 @@ class partialhash:
                 partial_hash.append(str(city64_hash))
             else:
                 if instruction_tag[i] == 1:
-                    xxh3_hash = xxhash.xxh32(partial_data[i])
-                    partial_hash.append(xxh3_hash.hexdigest())
+                    xxh64_hash = xxhash.xxh64(partial_data[i])
+                    partial_hash.append(xxh64_hash.hexdigest())
                 else:
                     if instruction_tag[i] == 2:
                         spooky64_hash = spookyhash.hash64(partial_data[i])
@@ -70,8 +70,8 @@ class partialhash:
                 partial_hash.append(str(city64_hash))
             else:
                 if instruction_tag[i] == 1:
-                    xxh3_hash = xxhash.xxh32(partial_data[i])
-                    partial_hash.append(xxh3_hash.hexdigest())
+                    xxh64_hash = xxhash.xxh64(partial_data[i])
+                    partial_hash.append(xxh64_hash.hexdigest())
                 else:
                     if instruction_tag[i] == 2:
                         spooky64_hash = spookyhash.hash64(partial_data[i])
@@ -103,8 +103,8 @@ class partialhash:
                     partial_hash.append(str(city64_hash))
                 else:
                     if instruction_tag[i] == 1:
-                        xxh3_hash = xxhash.xxh32(partial_data[i])
-                        partial_hash.append(xxh3_hash.hexdigest())
+                        xxh64_hash = xxhash.xxh64(partial_data[i])
+                        partial_hash.append(xxh64_hash.hexdigest())
                     else:
                         if instruction_tag[i] == 2:
                             spooky64_hash = spookyhash.hash64(partial_data[i])
