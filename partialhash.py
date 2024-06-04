@@ -1,6 +1,6 @@
 import random
 from Crypto.Hash import MD4
-from Crypto.Hash import MD2
+from Crypto.Hash import SHA256
 from Crypto.Hash import MD5
 import pickle
 class partialhash:
@@ -34,8 +34,8 @@ class partialhash:
         partial_array_size = len(instruction_tag)
         for i in range (0,partial_array_size):
             if instruction_tag[i] == 0:
-                md2_hash = MD2.new(partial_data[i])
-                partial_hash.append(md2_hash.hexdigest())
+                sha256_hash = SHA256.new(partial_data[i])
+                partial_hash.append(sha256_hash.hexdigest())
             else:
                 if instruction_tag[i] == 1:
                     md4_hash = MD4.new(partial_data[i])
@@ -65,8 +65,8 @@ class partialhash:
                 label.append(data_size)
             instruction_tag.append(random.randint(0, 2))
             if instruction_tag[i] == 0:
-                md2_hash = MD2.new(partial_data[i])
-                partial_hash.append(md2_hash.hexdigest())
+                sha256_hash = SHA256.new(partial_data[i])
+                partial_hash.append(sha256_hash.hexdigest())
             else:
                 if instruction_tag[i] == 1:
                     md4_hash = MD4.new(partial_data[i])
@@ -98,8 +98,8 @@ class partialhash:
                 partial_data.append(partialhash.getpartial(data, partial_label[i - 1], partial_label[i]))
             if i < n-1:
                 if instruction_tag[i] == 0:
-                    md2_hash = MD2.new(partial_data[i])
-                    partial_hash.append(md2_hash.hexdigest())
+                    sha256_hash = SHA256.new(partial_data[i])
+                    partial_hash.append(sha256_hash.hexdigest())
                 else:
                     if instruction_tag[i] == 1:
                         md4_hash = MD4.new(partial_data[i])
