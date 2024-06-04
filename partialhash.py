@@ -1,7 +1,7 @@
 import random
 import xxhash
 import cityhash
-from Crypto.Hash import MD5
+from Crypto.Hash import SHA256
 import spookyhash
 import pickle
 class partialhash:
@@ -78,8 +78,8 @@ class partialhash:
                         partial_hash.append(str(spooky64_hash))
             finalhashstr = finalhashstr + partial_hash[i]
 
-        md5_hash = MD5.new(str.encode(finalhashstr))
-        finalhash = md5_hash.hexdigest()
+        sha256_hash = SHA256.new(str.encode(finalhashstr))
+        finalhash = sha256_hash.hexdigest()
         param.append(pickle.dumps(label))
         param.append(pickle.dumps(partial_data))
         param.append(pickle.dumps(instruction_tag))
@@ -111,14 +111,14 @@ class partialhash:
                             partial_hash.append(str(spooky64_hash))
                 finalhashstr = finalhashstr + partial_hash[i]
 
-        md5_hash = MD5.new(str.encode(finalhashstr))
-        finalhash = md5_hash.hexdigest()
+        sha256_hash = SHA256.new(str.encode(finalhashstr))
+        finalhash = sha256_hash.hexdigest()
         return finalhash
 
     def generatefinalhash(partial_hash):
         finalhashstr = ''
         for i in partial_hash:
             finalhashstr = finalhashstr + i
-        md5_hash = MD5.new(str.encode(finalhashstr))
-        finalhash = md5_hash.hexdigest()
+        sha256_hash = SHA256.new(str.encode(finalhashstr))
+        finalhash = sha256_hash.hexdigest()
         return finalhash

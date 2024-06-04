@@ -2,8 +2,6 @@ import random
 from partialhash import partialhash
 import socket
 import pickle
-import datetime
-from Crypto.Hash import MD5
 #from partialdataIO import partialdataIO
 file = open("/Volumes/RAMDISK/test.mp3", "rb")
 data = file.read()
@@ -16,15 +14,7 @@ max_partial_size = int(data_size / n * 2)
 #instruction_tag = partialhash.generateinstructiontag(n)
 #partial_hash = partialhash.generatepartialhash(instruction_tag, partial_data)
 #final_hash = partialhash.generatefinalhash(partial_hash)
-clock0 = datetime.datetime.now()
 partial_param = partialhash.generatefinalhashquick(n, data, max_partial_size, data_size)
-clock1 = datetime.datetime.now()
-print(clock1-clock0)
-clock2 = datetime.datetime.now()
-md5_hash = MD5.new(data)
-md5_value = md5_hash.hexdigest()
-clock3 = datetime.datetime.now()
-print(clock3-clock2)
 partial_label = pickle.loads(partial_param[0])
 partial_data = pickle.loads(partial_param[1])
 instruction_tag = pickle.loads(partial_param[2])
