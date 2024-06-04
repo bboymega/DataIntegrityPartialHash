@@ -1,7 +1,8 @@
 import random
-from Crypto.Hash import MD4
-from Crypto.Hash import SHA256
+import xxhash
+import cityhash
 from Crypto.Hash import MD5
+import spookyhash
 import pickle
 class partialhash:
     def getpartial(data, initial, terminal):
@@ -34,16 +35,16 @@ class partialhash:
         partial_array_size = len(instruction_tag)
         for i in range (0,partial_array_size):
             if instruction_tag[i] == 0:
-                sha256_hash = SHA256.new(partial_data[i])
-                partial_hash.append(sha256_hash.hexdigest())
+                city64_hash = cityhash.CityHash64(partial_data[i])
+                partial_hash.append(str(city64_hash))
             else:
                 if instruction_tag[i] == 1:
-                    md4_hash = MD4.new(partial_data[i])
-                    partial_hash.append(md4_hash.hexdigest())
+                    xxh3_hash = xxhash.xxh32(partial_data[i])
+                    partial_hash.append(xxh3_hash.hexdigest())
                 else:
                     if instruction_tag[i] == 2:
-                        md5_hash = MD5.new(partial_data[i])
-                        partial_hash.append(md5_hash.hexdigest())
+                        spooky64_hash = spookyhash.hash64(partial_data[i])
+                        partial_hash.append(str(spooky64_hash))
         return partial_hash
 
     def generatefinalhashquick(n, data, max_partial_size, data_size):
@@ -65,16 +66,16 @@ class partialhash:
                 label.append(data_size)
             instruction_tag.append(random.randint(0, 2))
             if instruction_tag[i] == 0:
-                sha256_hash = SHA256.new(partial_data[i])
-                partial_hash.append(sha256_hash.hexdigest())
+                city64_hash = cityhash.CityHash64(partial_data[i])
+                partial_hash.append(str(city64_hash))
             else:
                 if instruction_tag[i] == 1:
-                    md4_hash = MD4.new(partial_data[i])
-                    partial_hash.append(md4_hash.hexdigest())
+                    xxh3_hash = xxhash.xxh32(partial_data[i])
+                    partial_hash.append(xxh3_hash.hexdigest())
                 else:
                     if instruction_tag[i] == 2:
-                        md5_hash = MD5.new(partial_data[i])
-                        partial_hash.append(md5_hash.hexdigest())
+                        spooky64_hash = spookyhash.hash64(partial_data[i])
+                        partial_hash.append(str(spooky64_hash))
             finalhashstr = finalhashstr + partial_hash[i]
 
         md5_hash = MD5.new(str.encode(finalhashstr))
@@ -98,16 +99,16 @@ class partialhash:
                 partial_data.append(partialhash.getpartial(data, partial_label[i - 1], partial_label[i]))
             if i < n-1:
                 if instruction_tag[i] == 0:
-                    sha256_hash = SHA256.new(partial_data[i])
-                    partial_hash.append(sha256_hash.hexdigest())
+                    city64_hash = cityhash.CityHash64(partial_data[i])
+                    partial_hash.append(str(city64_hash))
                 else:
                     if instruction_tag[i] == 1:
-                        md4_hash = MD4.new(partial_data[i])
-                        partial_hash.append(md4_hash.hexdigest())
+                        xxh3_hash = xxhash.xxh32(partial_data[i])
+                        partial_hash.append(xxh3_hash.hexdigest())
                     else:
                         if instruction_tag[i] == 2:
-                            md5_hash = MD5.new(partial_data[i])
-                            partial_hash.append(md5_hash.hexdigest())
+                            spooky64_hash = spookyhash.hash64(partial_data[i])
+                            partial_hash.append(str(spooky64_hash))
                 finalhashstr = finalhashstr + partial_hash[i]
 
         md5_hash = MD5.new(str.encode(finalhashstr))
