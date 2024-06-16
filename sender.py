@@ -9,7 +9,7 @@ file = open("/Volumes/RAMDISK/test.mp3", "rb")
 data = file.read()
 file.close()
 data_size = len(data)
-n = random.randint(3 + int(data_size / 1048576),  10 + int(data_size / 1048576))  #Average size of partial data chunk for large files: 1MB
+n = random.randint(3 + int(data_size / 1048576),  10 + int(data_size / 1048576))  #Average block size for large files: 1MB
 max_partial_size = int(data_size / n * 2)
 #partial_label = partialhash.generatepartiallabel(n, max_partial_size, data_size)
 #partial_data = partialhash.generatepartialdata(data, partial_label)
