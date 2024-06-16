@@ -12,3 +12,4 @@ class md5hashcalc:
         print("Time elapsed with MD5 hashing:", clock1 - clock0)
         print("Calculated MD5 Hash:", md5_value)
         return 0
+    
