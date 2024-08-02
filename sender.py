@@ -4,8 +4,12 @@ import socket
 import pickle
 import datetime
 from md5hashcalc import md5hashcalc
-#from partialdataIO import partialdataIO
-file = open("/Volumes/RAMDISK/test.mp3", "rb")
+import argparse
+#from partialdataIO import
+parser = argparse.ArgumentParser(description='Sender of Data Integrity Verification with Dynamic Partial Hash Algorithm.')
+parser.add_argument('file', type=str)
+args = parser.parse_args()
+file = open(args.file, "rb")
 data = file.read()
 file.close()
 data_size = len(data)

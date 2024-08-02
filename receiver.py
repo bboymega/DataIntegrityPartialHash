@@ -8,7 +8,11 @@ host = '0.0.0.0'
 port = 15000
 server_socket.bind((host, port))
 server_socket.listen(1)
-file_path = '/Volumes/RAMDISK/recv/'
+import argparse
+parser = argparse.ArgumentParser(description='Receiver of Data Integrity Verification with Dynamic Partial Hash Algorithm.')
+parser.add_argument('path', type=str)
+args = parser.parse_args()
+file_path = args.path
 while True:
     connection, client_address = server_socket.accept()
     try:
