@@ -8,6 +8,7 @@ import argparse
 #from partialdataIO import
 parser = argparse.ArgumentParser(description='Sender of Data Integrity Verification with Dynamic Partial Hash Algorithm.')
 parser.add_argument('file', type=str)
+parser.add_argument('host', type=str)
 args = parser.parse_args()
 file = open(args.file, "rb")
 data = file.read()
@@ -25,7 +26,7 @@ clock0 = datetime.datetime.now()
 partial_param = partialhash.generatefinalhashquick(n, data, max_partial_size, data_size)
 clock1 = datetime.datetime.now()
 print("Time elapsed with partial hashing:", clock1-clock0)
-md5hashcalc.md5hashcalc(file)
+md5hashcalc.md5hashcalc(args.file)
 
 partial_label = pickle.loads(partial_param[0])
 partial_data = pickle.loads(partial_param[1])
@@ -38,7 +39,7 @@ print("Instruction Tag:", instruction_tag)
 print("Calculated Final Hash:", final_hash)
 #partialdataIO.savepartialdata('/Volumes/RAMDISK', partial_data, instruction_tag)
 
-host = '127.0.0.1'
+host = args.host
 port = 15000
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client_socket.connect((host, port))
