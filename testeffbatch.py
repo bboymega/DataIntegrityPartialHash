@@ -10,7 +10,7 @@ file = open(args.file, "rb")
 data = file.read()
 file.close()
 data_size = len(data)
-n = random.randint(3 + int(data_size / 1048576),  5 + int(data_size / 1048576))  #Average block size for large files: 1MB
+n = random.randint(3 + int(data_size / 10485760),  5 + int(data_size / 10485760))  #Average block size for large files: 10MB
 max_partial_size = int(data_size / n * 2)
 print("Calculating Hash value of", file.name)
 clock0 = datetime.datetime.now()
