@@ -38,8 +38,8 @@ while True:
         final_hash = received_data[4].decode("utf-8")
         n = len(partial_label)
 
-        print("Partial Label:", partial_label)
-        print("Instruction Tag:", instruction_tag)
+        #print("Partial Label:", partial_label)
+        #print("Instruction Tag:", instruction_tag)
         print("Received Final Hash From Peer:", final_hash)
 
         #partial_data = partialhash.generatepartialdata(data, partial_label)
