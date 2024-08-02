@@ -14,7 +14,7 @@ file = open(args.file, "rb")
 data = file.read()
 file.close()
 data_size = len(data)
-n = random.randint(3 + int(data_size / 10485760),  5 + int(data_size / 10485760))  #Average block size for large files: 10MB
+n = random.randint(3 + int(data_size / 1048576),  5 + int(data_size / 1048576))  #Average block size for large files: 10MB
 max_partial_size = int(data_size / n * 2)
 #partial_label = partialhash.generatepartiallabel(n, max_partial_size, data_size)
 #partial_data = partialhash.generatepartialdata(data, partial_label)
