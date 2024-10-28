@@ -16,7 +16,7 @@ n = random.randint(3 + int(data_size / 10485760),  5 + int(data_size / 10485760)
 max_partial_size = int(data_size / n * 2)
 print("Calculating Hash value of", file.name)
 clock0 = datetime.datetime.now()
-for x in range(10):
+for x in range(100):
     partial_param = partialhash.generatefinalhashquick(n, data, max_partial_size, data_size)
 clock1 = datetime.datetime.now()
 pid = os.getpid()
