@@ -30,7 +30,7 @@ while True:
             tmp_data += chunk
             print("\rReceiving data from client",client_address[0]+":"+str(client_address[1]), "("+str(int(len(tmp_data)/data_size*100))+"%)",end='',flush=True)
         received_data = pickle.loads(tmp_data)
-        data = received_data[0]
+        data = bytearray(received_data[0])
         print("\nReceived",len(received_data[0]),"bytes from client. Verifying integrity...")
         filename = received_data[1].decode("utf-8")
         partial_label = pickle.loads(received_data[2])

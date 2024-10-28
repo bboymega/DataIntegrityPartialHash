@@ -7,7 +7,7 @@ parser = argparse.ArgumentParser(description='Efficiency Test of Data Integrity 
 parser.add_argument('file', type=str)
 args = parser.parse_args()
 file = open(args.file, "rb")
-data = file.read()
+data = bytearray(file.read())
 file.close()
 data_size = len(data)
 n = random.randint(3 + int(data_size / 10485760),  5 + int(data_size / 10485760))  #Average block size for large files: 1MB

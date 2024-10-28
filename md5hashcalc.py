@@ -3,7 +3,7 @@ import datetime
 class md5hashcalc:
     def md5hashcalc(path):
         file = open(path, "rb")
-        data = file.read()
+        data = bytearray(file.read())
         file.close()
         clock0 = datetime.datetime.now()
         md5_hash = MD5.new(data)
