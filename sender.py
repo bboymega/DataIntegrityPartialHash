@@ -25,10 +25,9 @@ print("Calculating Hash value of", file.name)
 partial_param = partialhash.generatefinalhashquick(n, data, max_partial_size, data_size)
 
 partial_label = pickle.loads(partial_param[0])
-partial_data = pickle.loads(partial_param[1])
-instruction_tag = pickle.loads(partial_param[2])
-partial_hash = pickle.loads(partial_param[3])
-final_hash = partial_param[4].decode("utf-8")
+instruction_tag = pickle.loads(partial_param[1])
+partial_hash = pickle.loads(partial_param[2])
+final_hash = partial_param[3].decode("utf-8")
 
 #print("Partial Label:", partial_label)
 #print("Instruction Tag:", instruction_tag)
