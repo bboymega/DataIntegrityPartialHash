@@ -9,7 +9,7 @@ args = parser.parse_args()
 file = open(args.file, "rb")
 data = bytearray(file.read())
 file.close()
-output_filename = "/root/uploads/output.txt"
+output_filename = "/home/dev/output/output.txt"
 output_file = open(output_filename, "a")
 data_size = len(data)
 n_avg = 0

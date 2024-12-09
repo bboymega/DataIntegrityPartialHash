@@ -9,7 +9,7 @@ args = parser.parse_args()
 file = open(args.file, "rb")
 data = bytearray(file.read())
 file.close()
-output_filename = "/root/uploads/output_alg.txt"
+output_filename = "/home/dev/output/output_alg.txt"
 output_file = open(output_filename, "a")
 data_size = len(data)
 count_avg = 0
